@@ -1,8 +1,13 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
+var dead = new Audio('die.wav')
+var audio = new Audio('bgm.mp3');
+var jumpsound = new Audio('jump.wav');
+var point = new Audio('point.wav')
 let score; //현재 점수
-let score2;
+let score2; //낮과 밤 조정시 사용
+let score3; //500점 마다 사운드 출력시 사용
 let score2Text;
 let scoreText; //현재 점수 텍스트
 let highscore; //최고 점수
@@ -128,7 +133,7 @@ class Dino {
 
     Draw(){
         var img = new Image()
-        if((keys['ShiftLeft'] || keys['KeyS']) && this.grounded){
+        if((keys[''] || keys['']) && this.grounded){
           img.src = 'dino_down.png'
           ctx.drawImage(img,this.x, this.y, this.w, this.h)
         }
@@ -148,6 +153,8 @@ class Dino {
         if (this.grounded && this.jumpTimer == 0) {  //땅에 있는지 && 타이머 =0 
           this.jumpTimer = 1;
           this.dy = -this.jumpForce; 
+          jumpsound.volume = 0.5;
+          jumpsound.play();
         } else if (this.jumpTimer > 0 && this.jumpTimer < 15) {
           this.jumpTimer++;
           this.dy = -this.jumpForce - (this.jumpTimer / 50); //갈수록 빠르게 떨어지는 것 구현
@@ -162,7 +169,7 @@ class Dino {
             this.jumpTimer = 0;
         }
     
-        if ((keys['ShiftLeft'] || keys['KeyS']) && this.grounded) {  // 왼쉬프트 or 키보드 S 입력시
+        if ((keys[''] || keys['']) && this.grounded) {  // 왼쉬프트 or 키보드 S 입력시
             this.y += this.h/2 
             this.h = this.originalHeight / 2; //h를 절반으로 줄여서 숙인 것과 같은 효과
         } else {
@@ -192,9 +199,9 @@ function changeBackgroundColor() {
   const body = document.body;
 
   // 만약 점수가 특정 값에 도달하면 배경 색상을 변경
-  if (score2 >= 20 && score2 <= 40) {
+  if (score2 >= 2000 && score2 <= 4000) {
     body.classList.add('score-reached');
-    if(score2 == 40){
+    if(score2 == 4000){
       score2 = 0;
     }
   } else {
@@ -206,11 +213,10 @@ function changeBackgroundColor() {
     obstacles = [];
     score = 0;
     score2 = 0;
+    score3 = 0;
     spawnTimer = initialSpawnTimer;
     gameSpeed = 3;
-    
     window.localStorage.setItem('highscore', highscore);
-
     location.href = 'GameOver.html'
   }
 
@@ -241,8 +247,12 @@ function Start () {
   
     score = 0;
     score2 = 0;
+    score3 = 0;
     highscore = 0;
-    
+    // audio.play();
+    // audio.loop = true;
+    // audio.volume = 0.02;
+  
   if(localStorage.getItem('highscore')){
     highscore = localStorage.getItem('highscore');
   }
@@ -292,8 +302,14 @@ function Update () {
       }
       o.Update();
     }
+    score3++;
     score2++;
     score++;
+    if(score3 / 1000 == 1){
+      point.volume = 0.5;
+      point.play();
+      score3 = 0;
+    }
     scoreText.t = "Score: " + score;
     score2Text.t = "Score2: " + score2;
     //score2Text.Draw()

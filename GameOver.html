@@ -10,17 +10,26 @@
             margin: 0;
             padding: 100;
             box-sizing: border-box;
-            background-image: url(main.png);
+            background-image: url(maindead.png);
         }
         .title{
-            margin-top: 200px;
+            margin-top: 150px;
             font-size: 50px;
             text-align: center
         }
         .start{
-            margin-top: 100px;
+            margin-top: 80px;
             width:300px;
             height: 50px;
+            background-color: green;
+            font-size: 20px;
+            color: white;
+            border-radius: 50px;
+        }
+        .toMain{
+            margin-top: 10px;
+            height: 50px;
+            width: 300px;
             background-color: green;
             font-size: 20px;
             color: white;
@@ -30,10 +39,25 @@
         width:300px;
         margin:auto;
         }
+        #ad{
+            width: 728px;
+            height: 90px;
+            background-color: brown;
+            margin: auto;
+        }
     </style>
 </head>
 <body>
+    <script>
+        var dead = new Audio('die.wav')
+        window.onload = function(){
+        dead.volume = 0.5;
+         dead.play();
+}
+    </script>
+    <div id="ad"></div>
     <div id="wrapper"><h1 class="title">GAME OVER</h1>
-    <button class="start" type="button" onclick="location.href = 'dino.html'">RESTART</button></div>
+    <button class="start" type="button" onclick="location.href = 'dino.html'">RESTART</button>
+    <button class="toMain" type="button" onclick="location.href = 'index.html'">MAIN PAGE</button></div>
 </body>
 </html>
