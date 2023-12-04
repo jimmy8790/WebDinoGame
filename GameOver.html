@@ -25,6 +25,7 @@
             font-size: 20px;
             color: white;
             border-radius: 50px;
+            cursor: pointer;
         }
         .toMain{
             margin-top: 10px;
@@ -34,16 +35,18 @@
             font-size: 20px;
             color: white;
             border-radius: 50px;
+            cursor: pointer;
         }
         #wrapper{
         width:300px;
         margin:auto;
         }
-        #ad{
+        .ad{
             width: 728px;
             height: 90px;
-            background-color: brown;
+            background-image: url(ad4.png);
             margin: auto;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -51,11 +54,11 @@
     <script>
         var dead = new Audio('die.wav')
         window.onload = function(){
-        dead.volume = 0.5;
+        dead.volume = 1;
          dead.play();
 }
     </script>
-    <div id="ad"></div>
+    <div class="ad" onclick="location.href = 'https://www.penbaypilot.com/article/fore-main-mizzen-sailing-aboard-coast-guard-tall-ship-eagle/20939'"></div>
     <div id="wrapper"><h1 class="title">GAME OVER</h1>
     <button class="start" type="button" onclick="location.href = 'dino.html'">RESTART</button>
     <button class="toMain" type="button" onclick="location.href = 'index.html'">MAIN PAGE</button></div>

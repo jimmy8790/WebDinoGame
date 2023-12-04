@@ -25,21 +25,23 @@
             font-size: 20px;
             color: white;
             border-radius: 50px;
+            cursor: pointer;
         }
         #wrapper{
         width:300px;
         margin:auto;
         }
-        #ad{
+        .ad{
             width: 728px;
             height: 90px;
-            background-color: brown;
+            background-image: url(ad1.png);
             margin: auto;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-<div id="ad"></div>
+<div class="ad" onclick="location.href = 'https://www.google.co.kr/?hl=ko'"></div>
     <div id="wrapper"><h1 class="title">DINO GAME</h1>
     <button class="start" type="button" onclick="location.href = 'dino.html'">Game Start</button></div>
 </body>

@@ -1,7 +1,6 @@
 const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 
-var dead = new Audio('die.wav')
 var audio = new Audio('bgm.mp3');
 var jumpsound = new Audio('jump.wav');
 var point = new Audio('point.wav')
@@ -125,7 +124,7 @@ class Dino {
       this.c = c;
   
       this.dy = 0; //점프를 위한 
-      this.jumpForce = 15; //
+      this.jumpForce = 10; //
       this.originalHeight = h; //숙이기 전 높이
       this.grounded = false; //땅에 있는지 판단
       this.jumpTimer =0 ; // 점프 시간 체크를 위한 타이머 추가
@@ -153,7 +152,7 @@ class Dino {
         if (this.grounded && this.jumpTimer == 0) {  //땅에 있는지 && 타이머 =0 
           this.jumpTimer = 1;
           this.dy = -this.jumpForce; 
-          jumpsound.volume = 0.5;
+          jumpsound.volume = 1;
           jumpsound.play();
         } else if (this.jumpTimer > 0 && this.jumpTimer < 15) {
           this.jumpTimer++;
@@ -306,7 +305,7 @@ function Update () {
     score2++;
     score++;
     if(score3 / 1000 == 1){
-      point.volume = 0.5;
+      point.volume = 1;
       point.play();
       score3 = 0;
     }
